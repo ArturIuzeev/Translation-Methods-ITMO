@@ -64,6 +64,18 @@ public class lab3BaseListener implements lab3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterQ(lab3Parser.QContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitQ(lab3Parser.QContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterF(lab3Parser.FContext ctx) { }
 	/**
 	 * {@inheritDoc}

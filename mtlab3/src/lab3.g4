@@ -5,11 +5,12 @@ MINUS  :    '-';
 MULT   :    '*';
 DIV    :    '/';
 
+END    :    ';';
+ASSIGN  :   '=';
+
 INT    :    [0-9]+;
 ID     :    [a-z]+;
 WS     :    [ \n\t]+ -> skip;
-END    :    ';';
-ASSIGN  :   '=';
 
 start  :
     expression*
@@ -28,7 +29,12 @@ e
 
 t
     :
-    |   f (MULT | DIV) t
+    |   q MULT t
+    |   q
+    ;
+q
+    :
+    |   f DIV q
     |   f
     ;
 f

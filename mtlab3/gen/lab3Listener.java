@@ -47,6 +47,16 @@ public interface lab3Listener extends ParseTreeListener {
 	 */
 	void exitT(lab3Parser.TContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link lab3Parser#q}.
+	 * @param ctx the parse tree
+	 */
+	void enterQ(lab3Parser.QContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link lab3Parser#q}.
+	 * @param ctx the parse tree
+	 */
+	void exitQ(lab3Parser.QContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link lab3Parser#f}.
 	 * @param ctx the parse tree
 	 */

@@ -1,19 +1,12 @@
 package lab3;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.stream.Stream;
 
 public class MyVisitor extends lab3BaseVisitor<Integer> {
     private final HashMap<String, Integer> map;
 
     public MyVisitor() {
         map = new HashMap<>();
-    }
-
-    @Override
-    public Integer visitStart(lab3Parser.StartContext ctx) {
-        return super.visitStart(ctx);
     }
 
     @Override
@@ -28,12 +21,11 @@ public class MyVisitor extends lab3BaseVisitor<Integer> {
     @Override
     public Integer visitE(lab3Parser.EContext ctx) {
         if (ctx.getChildCount() == 3) {
-            switch (ctx.getChild(1).getText()) {
-                case "-":
-                    return visit(ctx.e()) - visit(ctx.t());
-                case "+":
-                    return visit(ctx.e()) + visit(ctx.t());
-            }
+            return switch (ctx.getChild(1).getText()) {
+                case "-" -> visit(ctx.e()) - visit(ctx.t());
+                case "+" -> visit(ctx.e()) + visit(ctx.t());
+                default -> throw new IllegalStateException("Unexpected value: " + ctx.getChild(1).getText());
+            };
         }
         return visit(ctx.t());
     }
@@ -41,12 +33,15 @@ public class MyVisitor extends lab3BaseVisitor<Integer> {
     @Override
     public Integer visitT(lab3Parser.TContext ctx) {
         if (ctx.getChildCount() == 3) {
-            switch (ctx.getChild(1).getText()) {
-                case "*":
-                    return visit(ctx.f()) * visit(ctx.t());
-                case "/":
-                    return visit(ctx.f()) / visit(ctx.t());
-            }
+            return visit(ctx.q()) * visit(ctx.t());
+        }
+        return visit(ctx.q());
+    }
+
+    @Override
+    public Integer visitQ(lab3Parser.QContext ctx) {
+        if (ctx.getChildCount() == 3) {
+            return visit(ctx.f()) / visit(ctx.q());
         }
         return visit(ctx.f());
     }

@@ -34,6 +34,12 @@ public interface lab3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitT(lab3Parser.TContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link lab3Parser#q}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQ(lab3Parser.QContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link lab3Parser#f}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
