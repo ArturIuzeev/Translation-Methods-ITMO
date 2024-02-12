@@ -1,0 +1,48 @@
+digraph {
+n25 [label="E"];
+n25 -> n9;
+n9 [label="T"];
+n9 -> n6;
+n6 [label="F"];
+n6 -> n3;
+n3 [label="L"];
+n3 -> n1;
+n1 [label="Q"];
+n1 -> n2;
+n2 [label="a"];
+n6 -> n4;
+n4 [label="FPrime"];
+n4 -> n5;
+n5 [label="eps"];
+n9 -> n7;
+n7 [label="TPrime"];
+n7 -> n8;
+n8 [label="eps"];
+n25 -> n23;
+n23 [label="EPrime"];
+n23 -> n24;
+n24 [label="|"];
+n23 -> n20;
+n20 [label="T"];
+n20 -> n17;
+n17 [label="F"];
+n17 -> n14;
+n14 [label="L"];
+n14 -> n12;
+n12 [label="Q"];
+n12 -> n13;
+n13 [label="b"];
+n17 -> n15;
+n15 [label="FPrime"];
+n15 -> n16;
+n16 [label="eps"];
+n20 -> n18;
+n18 [label="TPrime"];
+n18 -> n19;
+n19 [label="eps"];
+n23 -> n21;
+n21 [label="EPrime"];
+n21 -> n22;
+n22 [label="eps"];
+
+ }
