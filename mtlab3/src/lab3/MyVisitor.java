@@ -19,6 +19,14 @@ public class MyVisitor extends lab3BaseVisitor<Integer> {
     }
 
     @Override
+    public Integer visitW(lab3Parser.WContext ctx) {
+        if (ctx.getChildCount() == 2) {
+            return -visit(ctx.w());
+        }
+        return visit(ctx.e());
+    }
+
+    @Override
     public Integer visitE(lab3Parser.EContext ctx) {
         if (ctx.getChildCount() == 3) {
             return switch (ctx.getChild(1).getText()) {

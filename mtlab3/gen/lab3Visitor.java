@@ -22,6 +22,12 @@ public interface lab3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(lab3Parser.ExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link lab3Parser#w}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitW(lab3Parser.WContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link lab3Parser#e}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

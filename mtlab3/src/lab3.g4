@@ -18,7 +18,13 @@ start  :
   
 expression
     :
-    ID ASSIGN e END
+    ID ASSIGN w END
+    ;
+
+w
+    :
+    |   MINUS w
+    |   e
     ;
 
 e

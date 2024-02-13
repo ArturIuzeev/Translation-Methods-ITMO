@@ -65,6 +65,14 @@ public class LexicalAnalyzer {
                 curToken = Token.XOR;
                 nextChar();
                 break;
+            case '=':
+                nextChar();
+                if (curSym != '=') {
+                    throw new ParseException("Illegal character" + curSym + ". We excepted = for ==", curPos);
+                }
+                curToken = Token.EQUALS;
+                 nextChar();
+                 break;
             case -1:
                 break;
             default:

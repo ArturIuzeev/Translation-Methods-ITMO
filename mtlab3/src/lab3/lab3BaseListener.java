@@ -41,6 +41,18 @@ public class lab3BaseListener implements lab3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterW(lab3Parser.WContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitW(lab3Parser.WContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterE(lab3Parser.EContext ctx) { }
 	/**
 	 * {@inheritDoc}

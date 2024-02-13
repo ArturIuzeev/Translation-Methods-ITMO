@@ -11,7 +11,62 @@ public class Parser {
         analyzer = new LexicalAnalyzer(inputStream);
         follow = new Follow(analyzer);
         analyzer.nextToken();
-        return E();
+        return M();
+    }
+
+    private Tree M() throws ParseException, IOException {
+        switch (analyzer.getCurToken()) {
+            case  NUM, LBRACKET, NOT -> {
+                var child = E();
+                follow.CheckEAndEPrime();
+                var child2 = new Tree(++count,
+                        "MPrime",
+                        new Tree(+count, "eps"));
+
+                if (analyzer.getCurToken() == Token.NOTHING ||
+                        analyzer.getCurToken() == Token.EQUALS) {
+                    child2 = MPrime();
+                }
+
+                return new Tree(++count,
+                        "M",
+                        child,
+                        child2);
+            }
+            default -> throw new AssertionError();
+        }
+    }
+
+    private Tree MPrime() throws ParseException, IOException {
+        switch (analyzer.getCurToken()) {
+            case NOTHING -> {
+                return new Tree(++count,
+                        "EPrime",
+                        new Tree(++count, "eps"));
+            }
+            case EQUALS -> {
+                analyzer.nextToken();
+                Tree child = E();
+
+                follow.CheckEAndEPrime();
+
+                var child2 = new Tree(++count,
+                        "MPrime",
+                        new Tree(++count, "eps"));
+
+                if (analyzer.getCurToken() == Token.NOTHING ||
+                        analyzer.getCurToken() == Token.EQUALS) {
+                    child2 = MPrime();
+                }
+
+                return new Tree(++count,
+                        "MPrime",
+                        new Tree(++count, "=="),
+                        child,
+                        child2);
+            }
+            default -> throw new AssertionError();
+        }
     }
 
     private Tree E() throws ParseException, IOException {
@@ -228,7 +283,7 @@ public class Parser {
             case LBRACKET -> {
                 analyzer.nextToken();
 
-                var child = E();
+                var child = M();
 
                 follow.CheckTAndTPrime();
                 analyzer.nextToken();
